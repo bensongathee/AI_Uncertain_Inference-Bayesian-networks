@@ -115,5 +115,4 @@ public class AIMA_Alarm {
 		Distribution dist = exact.query(B, a, bn);
 		System.out.println(dist);
 	}
-
 }
