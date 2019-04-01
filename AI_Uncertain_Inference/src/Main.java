@@ -3,14 +3,16 @@ import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import bn.base.Assignment;
-import bn.base.BooleanValue;
+import bn.base.StringValue;
 import bn.core.Distribution;
 import bn.core.BayesianNetwork;
 import bn.core.Inferencer;
 import bn.core.RandomVariable;
 import bn.inference.EnumerationInferencer;
+import bn.inference.RejectionSamplingInferencer;
 import bn.parser.BIFParser;
 import bn.parser.XMLBIFParser;
+import bn.parser.XMLBIFPrinter;
 public class Main {
 	public static void main(String[] argv) throws IOException, ParserConfigurationException, SAXException {
 		String filename = null;
@@ -44,17 +46,25 @@ public class Main {
 		// Creating the a list of observed values of the Evidence Variables
 		Assignment a = new bn.base.Assignment();
 		
-		a.put(bn.getVariableByName(argv[4]), BooleanValue.TRUE);
+		a.put(bn.getVariableByName(argv[4]), new StringValue("true"));
 		if(argv[5].equals("false"))
-			a.put(bn.getVariableByName(argv[4]), BooleanValue.FALSE);
+			a.put(bn.getVariableByName(argv[4]), new StringValue("false"));
 		
-		a.put(bn.getVariableByName(argv[6]), BooleanValue.TRUE);
+		/*a.put(bn.getVariableByName(argv[6]), new StringValue("true"));
 		if(argv[5].equals("false"))
-			a.put(bn.getVariableByName(argv[6]), BooleanValue.FALSE);
+			a.put(bn.getVariableByName(argv[6]), new StringValue("false"));*/
 		
 		// Passing the 3 Arguments onto the inferencer to obtain the distribution
 		Inferencer exact = new EnumerationInferencer();
-		Distribution dist = exact.query(X, a, bn);
-		System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+","+argv[6]+") = "+dist);
+		Distribution dist1 = exact.query(X, a, bn);
+//		System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+","+argv[6]+") = "+dist1);
+		System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+") = "+dist1);
+//		System.out.println(networkName+" distribution:\tP("+argv[3]+") = "+dist);
+		
+		Inferencer rej = new RejectionSamplingInferencer();
+		Distribution dist2 = rej.query(X, a, bn);
+//		System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+","+argv[6]+") = "+dist2);
+		System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+") = "+dist2);
+//		System.out.println(networkName+" distribution:\tP("+argv[3]+") = "+rej);
 	}
 }
