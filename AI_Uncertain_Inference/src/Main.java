@@ -9,6 +9,7 @@ import bn.core.BayesianNetwork;
 import bn.core.Inferencer;
 import bn.core.RandomVariable;
 import bn.inference.EnumerationInferencer;
+import bn.inference.LikelihoodWeightingInferencer;
 import bn.inference.RejectionSamplingInferencer;
 import bn.parser.BIFParser;
 import bn.parser.XMLBIFParser;
@@ -65,6 +66,12 @@ public class Main {
 		Distribution dist2 = rej.query(X, a, bn);
 //		System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+","+argv[6]+") = "+dist2);
 		System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+") = "+dist2);
+//		System.out.println(networkName+" distribution:\tP("+argv[3]+") = "+rej);
+		
+		Inferencer lik = new LikelihoodWeightingInferencer();
+		Distribution dist3 = rej.query(X, a, bn);
+//		System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+","+argv[6]+") = "+dist2);
+		System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+") = "+dist3);
 //		System.out.println(networkName+" distribution:\tP("+argv[3]+") = "+rej);
 	}
 }

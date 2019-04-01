@@ -12,18 +12,23 @@ public class RejectionSamplingInferencer extends java.lang.Object implements Inf
 	}
 	public Distribution query(RandomVariable X, Assignment e, BayesianNetwork network, double n) {
 		Distribution Q = new Distribution(X);
-		double[] arr= new double[X.getDomain().size()];
+		double[] N= new double[X.getDomain().size()];
+		int count = 0;
 		for(int i = 0; i < n; i++) {
 			Assignment x = new PriorSampler(network).getSample();
 			if(isConsistent(x, e)) {
-				int index = 0;
+				int index1 = 0;
+				count += 1;
 				for(Value v: X.getDomain()) {
 					if(v.equals(x.get(X)))
-						arr[index]+=1;
-					Q.set(v, (arr[index++]/n));
+						N[index1]+=1;
+					index1++;
 				}
 			}
 		}
+		int index2 = 0;
+		for(Value v: X.getDomain())
+			Q.set(v, (N[index2++]/count));
 		Q.normalize();
 		return Q;	
 	}
