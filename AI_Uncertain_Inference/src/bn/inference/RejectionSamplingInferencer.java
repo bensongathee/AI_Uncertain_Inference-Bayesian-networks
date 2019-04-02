@@ -8,7 +8,7 @@ import bn.core.Value;
 public class RejectionSamplingInferencer extends java.lang.Object implements Inferencer{
 	@Override
 	public Distribution query(RandomVariable X, Assignment e, BayesianNetwork network) {
-		return query(X, e, network, 1000);
+		return query(X, e, network, 100000);
 	}
 	public Distribution query(RandomVariable X, Assignment e, BayesianNetwork network, double n) {
 		Distribution Q = new Distribution(X);

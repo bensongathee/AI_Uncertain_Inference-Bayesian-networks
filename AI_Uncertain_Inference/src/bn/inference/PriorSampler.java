@@ -1,6 +1,6 @@
 package bn.inference;
 import java.util.Random;
-import bn.base.Assignment;
+import bn.core.Assignment;
 import bn.core.BayesianNetwork;
 import bn.core.RandomVariable;
 import bn.core.Value;
@@ -11,13 +11,13 @@ public class PriorSampler extends java.lang.Object{
 	public PriorSampler(BayesianNetwork network) {
 		this.network = network;
 		this.random = new Random();
-	} 
+	}
 	public PriorSampler(BayesianNetwork network,long seed) {
 		this.network = network;
 		this.random = new Random(seed);
 	}
 	public Assignment getSample() {
-		Assignment x = new Assignment();
+		Assignment x = new bn.base.Assignment();
 		variables = network.getVariablesSortedTopologically();
 		for(RandomVariable v : variables)
 			x.put(v,randomSampleForVariable(v, x));

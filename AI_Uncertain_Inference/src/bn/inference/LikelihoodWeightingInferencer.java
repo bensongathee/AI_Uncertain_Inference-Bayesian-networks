@@ -10,25 +10,27 @@ public class LikelihoodWeightingInferencer extends java.lang.Object implements I
 
 	@Override
 	public Distribution query(RandomVariable X, Assignment e, BayesianNetwork network) {
-		return query(X, e, network, 10000);
+		return query(X, e, network, 100000);
 	}
 	
 	public Distribution query(RandomVariable X, Assignment e, BayesianNetwork network, int n) {
 		Distribution Q = new Distribution(X);
 		double[] W = new double[X.getDomain().size()];
+		double totalWeight = 0;
 		
-		for(int i = 0; i < n; n++) {
-			Sample sample = new WeightedSampler(network).getSample((bn.base.Assignment) e);
+		for(int i = 0; i < n; i++) {
+			Sample sample = new WeightedSampler(network).getSample(e);
 			int index1 = 0;
 			for(Value v: X.getDomain()) {
 				if(v.equals(sample.e.get(X)))
 					W[index1] += sample.weight;
+				totalWeight += sample.weight;
 				index1++;
 			}
 		}
 		int index2 = 0;
 		for(Value v: X.getDomain())
-			Q.set(v, (W[index2++]/n));
+			Q.set(v, (W[index2++]/totalWeight));
 		Q.normalize();
 		return Q;
 	}

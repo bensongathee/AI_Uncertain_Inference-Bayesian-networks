@@ -2,7 +2,7 @@ package bn.inference;
 
 import bn.core.Assignment;
 import bn.core.BayesianNetwork;
-import bn.core.Distribution;
+import bn.base.Distribution;
 import bn.core.Inferencer;
 import bn.core.RandomVariable;
 
@@ -10,8 +10,17 @@ public class GibbsSamplingInferencer extends java.lang.Object implements Inferen
 
 	@Override
 	public Distribution query(RandomVariable X, Assignment e, BayesianNetwork network) {
-		// TODO Auto-generated method stub
-		return null;
+		return query(X, e, network, 1000);
+	}
+	
+	public Distribution query(RandomVariable X, Assignment e, BayesianNetwork bn, int n) {
+		Distribution Q = new Distribution(X);
+		
+		for(int i = 0; i < n; i++) {
+			
+		}
+		
+		return Q;
 	}
 
 }

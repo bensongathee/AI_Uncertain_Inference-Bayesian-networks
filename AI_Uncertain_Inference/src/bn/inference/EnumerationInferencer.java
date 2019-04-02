@@ -23,7 +23,7 @@ public class EnumerationInferencer implements Inferencer{
 	}
 	protected double enumerateAll(java.util.List<RandomVariable> vars, Assignment e, BayesianNetwork bn) {
 		if(vars.isEmpty())
-			return 1;
+			return 1; 
 		
 		java.util.List<RandomVariable> rest= new ArrayList<>(vars);
 		RandomVariable Y = rest.get(0);

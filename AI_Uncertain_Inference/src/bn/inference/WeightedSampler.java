@@ -1,18 +1,14 @@
 package bn.inference;
 
-import bn.base.Assignment;
+import bn.core.Assignment;
 import bn.core.BayesianNetwork;
 import bn.core.RandomVariable;
 
 public class WeightedSampler extends PriorSampler{
 
 	public class Sample {
-		public Assignment e;
-		public double weight; 
-		
-		public String toString(){
-			return "Assignment = " + e.toString() + ", Weight = " + weight;
-		}
+		public Assignment e = new bn.base.Assignment();
+		public double weight = 1;
 	}
 	
 	public WeightedSampler(BayesianNetwork network) {
@@ -25,10 +21,11 @@ public class WeightedSampler extends PriorSampler{
 	
 	public WeightedSampler.Sample getSample(Assignment x) {
 		Sample sample = new Sample();
-		sample.e = x;
 		for(RandomVariable v : network.getVariablesSortedTopologically()) {
-			if(x.containsKey(v))
-				sample.weight *= network.getProbability(v, x);
+			if(x.containsKey(v)) {
+				sample.e.put(v, x.get(v));
+				sample.weight *= network.getProbability(v, sample.e);
+			}
 			else
 				sample.e.put(v, randomSampleForVariable(v, sample.e));
 		}
