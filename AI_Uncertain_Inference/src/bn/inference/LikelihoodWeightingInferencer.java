@@ -10,7 +10,7 @@ public class LikelihoodWeightingInferencer extends java.lang.Object implements I
 
 	@Override
 	public Distribution query(RandomVariable X, Assignment e, BayesianNetwork network) {
-		return query(X, e, network, 1000000);
+		return query(X, e, network, 100000);
 	}
 	
 	public Distribution query(RandomVariable X, Assignment e, BayesianNetwork network, int n) {
