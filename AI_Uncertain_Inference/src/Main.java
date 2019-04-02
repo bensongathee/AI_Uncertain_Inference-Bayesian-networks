@@ -57,27 +57,27 @@ public class Main {
 		Inferencer exact = new EnumerationInferencer();
 		Distribution dist1 = exact.query(X, a, bn);
 		if(argv.length>6)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+","+argv[6]+") = "+dist1);
+			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+" = "+argv[5]+","+argv[6]+" = "+argv[7]+") = "+dist1);
 		else if(argv.length>4)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+") = "+dist1);
+			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+" = "+argv[5]+") = "+dist1);
 		else if(argv.length>2)
 			System.out.println(networkName+" distribution:\tP("+argv[3]+") = "+dist1);
 		
 		Inferencer rej = new RejectionSamplingInferencer();
 		Distribution dist2 = rej.query(X, a, bn);
 		if(argv.length>6)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+","+argv[6]+") = "+dist2);
+			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+" = "+argv[5]+","+argv[6]+" = "+argv[7]+") = "+dist2);
 		else if(argv.length>4)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+") = "+dist2);
+			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+" = "+argv[5]+") = "+dist2);
 		else if(argv.length>2)
 			System.out.println(networkName+" distribution:\tP("+argv[3]+") = "+dist2);
 		
 		Inferencer lik = new LikelihoodWeightingInferencer();
 		Distribution dist3 = lik.query(X, a, bn);
 		if(argv.length>6)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+","+argv[6]+") = "+dist3);
+			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+" = "+argv[5]+","+argv[6]+" = "+argv[7]+") = "+dist3);
 		else if(argv.length>4)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+") = "+dist3);
+			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+" = "+argv[5]+") = "+dist3);
 		else if(argv.length>2)
 			System.out.println(networkName+" distribution:\tP("+argv[3]+") = "+dist3);
 	}
