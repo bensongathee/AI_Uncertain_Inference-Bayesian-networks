@@ -40,7 +40,7 @@ If you're running it on the terminal,
 
 cd AI_Uncertain_Inference,
 
-then execute the following command
+then provide the argument similar to example listed below:
 
     java -cp "./bin" Main xml AIMA-Alarm 100000 aima-alarm.xml B J true M true
 or
