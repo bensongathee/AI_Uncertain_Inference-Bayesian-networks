@@ -8,6 +8,8 @@ Algorithms used:
     3. Likelihood Weighting, and 
     4. Gibbs Sampling for approximate inference of probabilities.
 
+NB: The Bayesian network need to be encoded in a .xml or .bif file
+
 # Configurations (Eclipse)
 If running on Eclipse, (Run Configurations) and provide the argument similar to example listed below:
 
@@ -42,10 +44,10 @@ cd AI_Uncertain_Inference,
 
 then provide the argument similar to example listed below:
 
-    java -cp "./bin" Main xml AIMA-Alarm 100000 aima-alarm.xml B J true M true
+    java -cp "./bin" Main bif Sachs 100000 sachs.bif Akt Erk LOW PKA HIGH
 or
 
-    java -cp "./bin" Main xml AIMA-Alarm - aima-alarm.xml B J true M true
+    java -cp "./bin" Main bif Sachs - sachs.bif Akt Erk LOW PKA HIGH
 to use the default number of samples, 100000
 # Preview
 
