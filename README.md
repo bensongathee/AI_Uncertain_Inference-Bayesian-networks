@@ -1,5 +1,8 @@
 # AI_Uncertain_Inference-Bayesian-networks
-Uncertain inference, focusing on Bayesian networks which are also the basis for many other formalisms used in AI for dealing with uncertain knowledge
+Uncertain inference, focusing on Bayesian networks which are also the basis for many other formalisms used in AI for dealing with uncertain knowledge.
+Algorithms used:
+Enumeration Inference for exact inference of probabilites.
+Rejection Sampling, Likelihood Weighting and Gibbs Sampling for approximate inference of probabilities.
 
 # Configurations
 If running on Eclipse, (Run Configurations) and provide the argument similar to example listed below:
