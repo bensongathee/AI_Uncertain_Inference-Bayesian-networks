@@ -7,11 +7,11 @@ Rejection Sampling, Likelihood Weighting and Gibbs Sampling for approximate infe
 # Configurations
 If running on Eclipse, (Run Configurations) and provide the argument similar to example listed below:
 
-    xml AIMA-Alarm 10000 src/bn/examples/aima-alarm.xml B J true M true
+    xml AIMA-Alarm 10000 aima-alarm.xml B J true M true
 
 or
 
-    xml AIMA-Alarm 10000 src/bn/examples/aima-alarm.xml B J true M true
+    xml AIMA-Alarm 10000 aima-alarm.xml B J true M true
 
 where,
 
@@ -23,7 +23,7 @@ the number 100000 (equal to the number of samples generated in prior and weighte
 
 eg.:
 
-    xml AIMA-Alarm - src/bn/examples/aima-alarm.xml B J true M true
+    xml AIMA-Alarm - aima-alarm.xml B J true M true
 
 Note- it works for any bayesian network (though very slowly for ones with very high number of variables), even those having variables with domain sizes greater than 2, and non boolean.
 
