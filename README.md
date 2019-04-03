@@ -37,7 +37,7 @@ Note- Number of evidence variables can range from 0 to a reasonable number.
 
 # Preview
 
-java -cp "./bin" Main xml AIMA-Alarm - aima-alarm.xml B J true M true
+    java -cp "./bin" Main xml AIMA-Alarm - aima-alarm.xml B J true M true
 
 Inference by enumeration:
 
