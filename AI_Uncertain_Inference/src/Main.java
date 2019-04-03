@@ -17,6 +17,7 @@ public class Main {
 	public static void main(String[] argv) throws IOException, ParserConfigurationException, SAXException {
 		String networkName = null;
 		String filename = null;
+		String prefix = "src/bn/examples/";
 		
 		// Creating a Bayesian Network
 		BayesianNetwork bn = null;
@@ -24,7 +25,7 @@ public class Main {
 			if (argv.length > 1) {
 				networkName = argv[1];
 				if (argv.length > 3)
-					filename = argv[3];
+					filename = prefix + argv[3];
 			}
 			BIFParser parser = new BIFParser(new FileInputStream(filename));
 			bn = parser.parseNetwork();
@@ -32,7 +33,7 @@ public class Main {
 			if (argv.length > 1) {
 				networkName = argv[1];
 				if (argv.length > 3)
-					filename = argv[3];
+					filename = prefix + argv[3];
 			}
 			XMLBIFParser parser = new XMLBIFParser();
 			bn = parser.readNetworkFromFile(filename);
@@ -75,7 +76,7 @@ public class Main {
 			dist3 = lik.query(X, a, bn);
 		else 
 			dist3 = lik.query(X, a, bn, Integer.parseInt(argv[2]));
-		System.out.print("Rejection Sampling:\n\t"+networkName+": Distribution over "+argv[4]+" = \tP("+argv[4]+"|");
+		System.out.print("Likelihood Weighting:\n\t"+networkName+": Distribution over "+argv[4]+" = \tP("+argv[4]+"|");
 		for(int i = 5; i < argv.length; i+=2)
 			System.out.print(" "+argv[i] + " = "+argv[i+1]);
 		System.out.print(") = "+dist3+"\n\n");
