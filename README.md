@@ -8,7 +8,7 @@ Algorithms used:
     3. Likelihood Weighting, and 
     4. Gibbs Sampling for approximate inference of probabilities.
 
-# Configurations
+# Configurations (Eclipse)
 If running on Eclipse, (Run Configurations) and provide the argument similar to example listed below:
 
     xml AIMA-Alarm 10000 aima-alarm.xml B J true M true
@@ -35,6 +35,18 @@ Note- If the number of samples is very small, rejection sampling may reject all 
 
 Note- Number of evidence variables can range from 0 to a reasonable number.
 
+# Configurations (Terminal)
+If you're running it on the terminal,
+
+cd AI_Uncertain_Inference,
+
+then execute the following command
+
+    java -cp "./bin" Main xml AIMA-Alarm 100000 aima-alarm.xml B J true M true
+or
+
+    java -cp "./bin" Main xml AIMA-Alarm - aima-alarm.xml B J true M true
+to use the default number of samples, 100000
 # Preview
 
     java -cp "./bin" Main xml AIMA-Alarm - aima-alarm.xml B J true M true
