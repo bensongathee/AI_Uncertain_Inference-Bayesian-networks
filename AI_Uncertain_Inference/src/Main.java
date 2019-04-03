@@ -13,7 +13,6 @@ import bn.inference.LikelihoodWeightingInferencer;
 import bn.inference.RejectionSamplingInferencer;
 import bn.parser.BIFParser;
 import bn.parser.XMLBIFParser;
-import bn.parser.XMLBIFPrinter;
 public class Main {
 	public static void main(String[] argv) throws IOException, ParserConfigurationException, SAXException {
 		String filename = null;
@@ -47,38 +46,30 @@ public class Main {
 		// Creating the a list of observed values of the Evidence Variables
 		Assignment a = new bn.base.Assignment();
 		int count= 3;
-		while(argv.length>++count) {
-			a.put(bn.getVariableByName(argv[count]), new StringValue("true"));
-			if(argv[++count].equals("false"))
-				a.put(bn.getVariableByName(argv[count-1]), new StringValue("false"));
-		}
+		while(argv.length>++count)
+			a.put(bn.getVariableByName(argv[count]), new StringValue(argv[++count]));
+		
 		
 		// Passing the 3 Arguments onto the inferencer to obtain the distribution
 		Inferencer exact = new EnumerationInferencer();
 		Distribution dist1 = exact.query(X, a, bn);
-		if(argv.length>6)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+" = "+argv[5]+","+argv[6]+" = "+argv[7]+") = "+dist1);
-		else if(argv.length>4)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+" = "+argv[5]+") = "+dist1);
-		else if(argv.length>2)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+") = "+dist1);
+		System.out.print(networkName+" distribution:\tP("+argv[3]+"|");
+		for(int i = 4; i < argv.length; i+=2)
+			System.out.print(" "+argv[i] + " = "+argv[i+1]);
+		System.out.print(") = "+dist1+"\n");
 		
 		Inferencer rej = new RejectionSamplingInferencer();
 		Distribution dist2 = rej.query(X, a, bn);
-		if(argv.length>6)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+" = "+argv[5]+","+argv[6]+" = "+argv[7]+") = "+dist2);
-		else if(argv.length>4)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+" = "+argv[5]+") = "+dist2);
-		else if(argv.length>2)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+") = "+dist2);
+		System.out.print(networkName+" distribution:\tP("+argv[3]+"|");
+		for(int i = 4; i < argv.length; i+=2)
+			System.out.print(" "+argv[i] + " = "+argv[i+1]);
+		System.out.print(") = "+dist2+"\n");
 		
 		Inferencer lik = new LikelihoodWeightingInferencer();
 		Distribution dist3 = lik.query(X, a, bn);
-		if(argv.length>6)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+" = "+argv[5]+","+argv[6]+" = "+argv[7]+") = "+dist3);
-		else if(argv.length>4)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+"|"+argv[4]+" = "+argv[5]+") = "+dist3);
-		else if(argv.length>2)
-			System.out.println(networkName+" distribution:\tP("+argv[3]+") = "+dist3);
+		System.out.print(networkName+" distribution:\tP("+argv[3]+"|");
+		for(int i = 4; i < argv.length; i+=2)
+			System.out.print(" "+argv[i] + " = "+argv[i+1]);
+		System.out.print(") = "+dist3+"\n");
 	}
 }
