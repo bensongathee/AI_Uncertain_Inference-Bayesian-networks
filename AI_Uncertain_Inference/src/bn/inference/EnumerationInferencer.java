@@ -25,17 +25,16 @@ public class EnumerationInferencer implements Inferencer{
 		if(vars.isEmpty())
 			return 1; 
 		
-		java.util.List<RandomVariable> rest= new ArrayList<>(vars);
-		RandomVariable Y = rest.get(0);
-		rest.remove(0);
+		RandomVariable Y = vars.get(0);
+		vars.remove(0);
 		
 		if(e.containsKey(Y))
-			return bn.getProbability(Y, e) * enumerateAll(rest, e, bn);
+			return bn.getProbability(Y, e) * enumerateAll(new ArrayList<>(vars), e, bn);
 		
 		double sum = 0;
 		for(Value y : Y.getDomain()) {
 			e.put(Y, y);
-			sum += bn.getProbability(Y, e) * enumerateAll(rest, e, bn);
+			sum += bn.getProbability(Y, e) * enumerateAll(new ArrayList<>(vars), e, bn);
 			e.remove(Y);
 		}
 		return sum;
