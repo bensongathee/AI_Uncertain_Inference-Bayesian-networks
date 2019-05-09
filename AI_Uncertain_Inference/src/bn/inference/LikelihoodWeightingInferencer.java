@@ -24,9 +24,9 @@ public class LikelihoodWeightingInferencer extends java.lang.Object implements I
 			for(Value v: X.getDomain()) {
 				if(v.equals(sample.e.get(X)))
 					W[index1] += sample.weight;
-				totalWeight += sample.weight;
 				index1++;
 			}
+			totalWeight += sample.weight;
 		}
 		int index2 = 0;
 		for(Value v: X.getDomain())
